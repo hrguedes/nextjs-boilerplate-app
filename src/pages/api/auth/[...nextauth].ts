@@ -7,7 +7,7 @@ const providers = [
     CredentialsProvider({
         name: 'Credentials',
         credentials: {
-            login: { label: "login", type: "text", placeholder: "taking.user" },
+            login: { label: "login", type: "text", placeholder: "hrguedes" },
             senha: { label: "senha", type: "password" }
         },
         authorize: async (credentials: any) => {

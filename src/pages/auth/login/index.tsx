@@ -25,7 +25,7 @@ const Login = () => {
             return;
         }
 
-        let response = await signIn('credentials', { login: 'taking.iobA03', senha: 'IOBSUP3R', callbackUrl: "/" });
+        let response = await signIn('credentials', { login: usuario, senha: senha, callbackUrl: "/", redirect: true });
 
         if (response?.status === 401) {
             setAvisos("Fora do Ar, por favor entre em contato com o administrador.");
