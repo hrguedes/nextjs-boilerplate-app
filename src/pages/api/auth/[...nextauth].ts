@@ -16,8 +16,9 @@ const providers = [
                     login: credentials.login,
                     senha: credentials.senha
                 });
+                console.log(data);
                 if (data.ok) {
-                    return data;
+                    return data.data;
                 }
                 return null;
             } catch (e: any) {

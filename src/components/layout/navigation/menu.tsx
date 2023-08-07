@@ -1,24 +1,23 @@
+import userLogged from "@/src/hooks/userLogged";
+import { MenuResponse } from "@/src/models/Autenticacao/response/MenuResponse";
+import { UsuarioLogadoResponse } from "@/src/models/Autenticacao/response/UsuarioLogadoResponse";
+import Link from "next/link"
+
 const classNames = (...classes: any) => {
     return classes.filter(Boolean).join(' ')
 }
 
 const MenuBar = () => {
-
-    const navigation = [
-        { name: 'Dashboard', href: '#', current: true },
-        { name: 'Team', href: '#', current: false },
-        { name: 'Projects', href: '#', current: false },
-        { name: 'Calendar', href: '#', current: false },
-        { name: 'Reports', href: '#', current: false },
-    ]
-
+    const user: UsuarioLogadoResponse | undefined = userLogged();
+    const menuNavigation: MenuResponse[] | undefined = user?.menus;
+    
     return (
         <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-                {navigation.map((item) => (
-                    <a
-                        key={item.name}
-                        href={item.href}
+                {menuNavigation?.map((item) => (
+                    <Link
+                        key={item.nome}
+                        href={item.url ?? ""}
                         className={classNames(
                             item.current
                                 ? 'bg-gray-900 text-white'
@@ -27,8 +26,8 @@ const MenuBar = () => {
                         )}
                         aria-current={item.current ? 'page' : undefined}
                     >
-                        {item.name}
-                    </a>
+                        {item.nome}
+                    </Link>
                 ))}
             </div>
         </div>

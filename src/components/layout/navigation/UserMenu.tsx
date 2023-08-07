@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Fragment } from "react"
 
 import userImage from '@/public/assets/image/photo-1472099645785-5658abf4ff4e.jpeg'
+import { UsuarioLogadoResponse } from '@/src/models/Autenticacao/response/UsuarioLogadoResponse'
+import userLogged from '@/src/hooks/userLogged'
 
 const user = {
     name: 'Tom Cook',
@@ -12,7 +14,6 @@ const user = {
 
 const userNavigation = [
     { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '#' },
 ]
 
@@ -22,13 +23,15 @@ const classNames = (...classes: any) => {
 
 
 const UserMenu = () => {
+    const user: UsuarioLogadoResponse | undefined = userLogged();
+
     return (
         <Menu as="div" className="relative ml-3">
             <div>
-                <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <Menu.Button className="relative flex max-w-xs items-center text-white text-sm focus:outline-none">
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
-                    <Image className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" width={32} />
+                    <span>{user?.nome}</span>
                 </Menu.Button>
             </div>
             <Transition

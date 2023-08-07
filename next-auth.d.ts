@@ -1,12 +1,12 @@
 import NextAuth from "next-auth"
-import { UsuarioResponse } from "./src/models/Autenticacao/response/UsuarioResponse"
+import { UsuarioLogadoResponse } from "./src/models/Autenticacao/response/UsuarioLogadoResponse"
 
 declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
   interface Session {
-    usuario: UsuarioResponse,
+    usuario: UsuarioLogadoResponse,
     user: {
       name: string
     }
